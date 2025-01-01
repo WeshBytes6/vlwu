@@ -1,0 +1,114 @@
+/* General reset and body styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/svgs/solid/skull-crossbones.svg'), auto;
+}
+
+.full-screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  flex-direction: row;
+  color: white;
+  padding-top: 50px;
+}
+
+.center-gif {
+  width: 300px;
+  height: auto;
+  margin-right: 30px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 50px; /* Move the 3 texts a little bit to the right */
+}
+
+.text-container p {
+  margin: 10px 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  filter: blur(5px); /* Initial blur effect */
+  transition: filter 0.3s ease; /* Smooth transition when un-blurring */
+}
+
+/* Remove the blur effect on hover */
+.text-container p:hover {
+  filter: blur(0); 
+}
+
+/* Center text and bottom text styling */
+.hover-display, .bottom-text {
+  font-size: 1.5rem;
+  color: white;
+  position: absolute;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+#center-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#bottom-text {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Hover effects to display the center and bottom text */
+.text-item:hover + #center-text {
+  display: block;
+}
+
+.text-item:hover + #bottom-text {
+  display: block;
+}
+
+/* Display the appropriate text when hovering */
+.text-item:nth-child(1):hover ~ #center-text, .text-item:nth-child(1):hover ~ #bottom-text {
+  content: 'vlwu'; /* Text for Text 1 */
+}
+
+.text-item:nth-child(2):hover ~ #center-text, .text-item:nth-child(2):hover ~ #bottom-text {
+  content: 'Some other text'; /* Text for Text 2 */
+}
+
+.text-item:nth-child(3):hover ~ #center-text, .text-item:nth-child(3):hover ~ #bottom-text {
+  content: 'Sylvane'; /* Text for Text 3 */
+}
+/* Center text and bottom text styling */
+/* Bottom text styling */
+/* Bottom text styling */
+/* Bottom text styling */
+/* Bottom text styling */
+.bottom-text {
+  font-size: 2rem;
+  color: #e1e1e1;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* Initially hidden */
+  font-family: 'Dosis', sans-serif; /* Using Dosis font */
+  font-weight: 300; /* Thin weight */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.4);
+}

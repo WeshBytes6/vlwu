@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vlwu</title>
+    <link rel="stylesheet" href="Sylv.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio element to play music -->
+    <audio id="background-music" src="32417a673e32450a8e2b13dc3c1909-unscreen.gif" preload="auto"></audio>
+
+    <div class="full-screen">
+        <!-- GIF image -->
+        <div class="center-gif">
+            <img src="32417a673e32450a8e2b13dc3c1909-unscreen.gif" alt="Gif">
+        </div>
+
+        <!-- The six text elements -->
+        <div class="text-container">
+            <p class="text-item" id="text1" data-text="Discord Раздор">
+                <i class="fab fa-discord"></i> Раздор
+            </p>
+            <p class="text-item" id="text2" data-text="Instagram near it">
+                <i class="fab fa-instagram"></i> Инстаграм
+            </p>
+            <p class="text-item" id="text3" data-text="Сильвейн">Сильвейн</p>
+            <p class="text-item" id="text4" data-text="Владеет">Владеет</p>
+            <p class="text-item" id="text5" data-text="ты">ты</p>
+            <p class="text-item" id="ip-text" data-text="Сильван повсюду">Сильван повсюду</p>
+        </div>
+
+        <!-- Text that appears in bottom -->
+        <div id="bottom-text" class="bottom-text"></div>
+    </div>
+
+    <script>
+        // Function to enter full-screen mode
+        function enterFullScreen() {
+            const body = document.documentElement;
+            if (body.requestFullscreen) {
+                body.requestFullscreen();
+            } else if (body.mozRequestFullScreen) { // Firefox
+                body.mozRequestFullScreen();
+            } else if (body.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                body.webkitRequestFullscreen();
+            } else if (body.msRequestFullscreen) { // IE/Edge
+                body.msRequestFullscreen();
+            }
+        }
+
+        // Function to fetch device IP
+        function fetchIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('bottom-text').textContent = data.ip;
+                    document.getElementById('bottom-text').style.display = 'block';
+                });
+        }
+
+        // Add event listeners to display specific texts when hovering over the text items
+        document.getElementById('ip-text').addEventListener('mouseover', fetchIP);
+        document.getElementById('ip-text').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        // Add event listeners for other text items
+        document.getElementById('text1').addEventListener('mouseover', () => {
+            document.getElementById('bottom-text').textContent = 'vlwu';
+            document.getElementById('bottom-text').style.display = 'block';
+        });
+        document.getElementById('text1').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        document.getElementById('text2').addEventListener('mouseover', () => {
+            document.getElementById('bottom-text').textContent = 'I DONT KNOW';
+            document.getElementById('bottom-text').style.display = 'block';
+        });
+        document.getElementById('text2').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        document.getElementById('text3').addEventListener('mouseover', () => {
+            document.getElementById('bottom-text').textContent = 'SYLVANE';
+            document.getElementById('bottom-text').style.display = 'block';
+        });
+        document.getElementById('text3').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        document.getElementById('text4').addEventListener('mouseover', () => {
+            document.getElementById('bottom-text').textContent = 'OWNS';
+            document.getElementById('bottom-text').style.display = 'block';
+        });
+        document.getElementById('text4').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        document.getElementById('text5').addEventListener('mouseover', () => {
+            document.getElementById('bottom-text').textContent = 'YOU';
+            document.getElementById('bottom-text').style.display = 'block';
+        });
+        document.getElementById('text5').addEventListener('mouseout', () => {
+            document.getElementById('bottom-text').style.display = 'none';
+        });
+
+        // Play music when the page loads
+        window.onload = function() {
+            var audio = document.getElementById('background-music');
+            audio.play();
+
+            // Request full-screen mode when the page loads
+            enterFullScreen();
+        };
+        function changeTitle() {
+            const titles = ["vlwu", "Sylvane", "XD"];
+            let i = 0;
+            let currentTitle = '';
+            let typingSpeed = 100; // Speed of typing in milliseconds
+            let deletingSpeed = 50; // Speed of deleting in milliseconds
+            let isDeleting = false;
+            
+            function type() {
+                if (!isDeleting) {
+                    if (currentTitle.length < titles[i].length) {
+                        // Add one letter to the title
+                        currentTitle += titles[i][currentTitle.length];
+                        document.title = currentTitle;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        isDeleting = true;
+                        setTimeout(type, 2000); // Wait 2 seconds before starting to delete
+                    }
+                } else {
+                    // Remove one letter from the title
+                    currentTitle = currentTitle.slice(0, -1);
+                    document.title = currentTitle;
+                    if (currentTitle.length === 0) {
+                        isDeleting = false;
+                        i = (i + 1) % titles.length; // Loop through the titles
+                        setTimeout(type, 500); // Wait 500ms before typing the next word
+                    } else {
+                        setTimeout(type, deletingSpeed);
+                    }
+                }
+            }
+
+            // Start the typing effect
+            type();
+        }
+
+        // Start the title transition when the page is loaded
+        window.onload = function() {
+            changeTitle();
+        };
+    </script>
+</body>
+</html>

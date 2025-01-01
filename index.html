@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title> <!-- Set title initially empty -->
+    <link rel="stylesheet" href="Sylv.css">
+</head>
+<body>
+    <div class="center">
+        <!-- Link to page2.html with the text styled -->
+        <a href="ur_mom.html" class="hover-text">Hey there.</a>
+    </div>
+
+    <script>
+        // JavaScript function to change the title dynamically with a typing effect
+        function changeTitle() {
+            const titles = ["vlwu", "Sylvane", "XD"];
+            let i = 0;
+            let currentTitle = '';
+            let typingSpeed = 100; // Speed of typing in milliseconds
+            let deletingSpeed = 50; // Speed of deleting in milliseconds
+            let isDeleting = false;
+            
+            function type() {
+                if (!isDeleting) {
+                    if (currentTitle.length < titles[i].length) {
+                        // Add one letter to the title
+                        currentTitle += titles[i][currentTitle.length];
+                        document.title = currentTitle;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        isDeleting = true;
+                        setTimeout(type, 2000); // Wait 2 seconds before starting to delete
+                    }
+                } else {
+                    // Remove one letter from the title
+                    currentTitle = currentTitle.slice(0, -1);
+                    document.title = currentTitle;
+                    if (currentTitle.length === 0) {
+                        isDeleting = false;
+                        i = (i + 1) % titles.length; // Loop through the titles
+                        setTimeout(type, 500); // Wait 500ms before typing the next word
+                    } else {
+                        setTimeout(type, deletingSpeed);
+                    }
+                }
+            }
+
+            // Start the typing effect
+            type();
+        }
+
+        // Start the title transition when the page is loaded
+        window.onload = function() {
+            changeTitle();
+        };
+    </script>
+</body>
+</html>
